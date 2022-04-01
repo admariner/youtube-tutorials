@@ -30,7 +30,7 @@ def get_btn_text(start_ms):
 def add_btn(start_ms, key):
     start_s = start_ms / 1000
     if st.button(get_btn_text(start_ms), key):
-        url_time = url + '&t=' + str(start_s) + 's'
+        url_time = f'{url}&t={str(start_s)}s'
         with placeholder.container():
             st_player(url_time, playing=True, muted=False)
         

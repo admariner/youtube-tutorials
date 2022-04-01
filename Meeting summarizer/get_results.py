@@ -29,8 +29,7 @@ def upload_to_AssemblyAI(audio_file):
     response = requests.post(transcript_endpoint, json=json, headers=headers)
     print(response.json())
 
-    polling_endpoint = transcript_endpoint + "/" + response.json()['id']
-    return polling_endpoint
+    return f'{transcript_endpoint}/' + response.json()['id']
 
 
 def convertMillis(start_ms):

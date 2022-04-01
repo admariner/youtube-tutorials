@@ -86,7 +86,7 @@ while status != 'completed':
 	polling_response = requests.get(polling_endpoint, headers=headers)
 	transcript = polling_response.json()['text']
 	status = polling_response.json()['status']
-	
+
 
 # Display transcript
 print('creating transcript')
@@ -118,7 +118,7 @@ st.header(title)
 
 
 ## Visualizations
-st.markdown("### Number of sentences: " + str(sen_df.shape[0]))
+st.markdown(f"### Number of sentences: {str(sen_df.shape[0])}")
 
 
 grouped = pd.DataFrame(sen_df['sentiment'].value_counts()).reset_index()
