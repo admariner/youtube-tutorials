@@ -20,7 +20,7 @@ headers_assemblyai = {
 
 
 def get_episode_audio_url(episode_id):
-    url = listennotes_episode_endpoint + '/' + episode_id
+    url = f'{listennotes_episode_endpoint}/{episode_id}'
     response = requests.request('GET', url, headers=headers_listennotes)
 
     data = response.json()
@@ -46,15 +46,15 @@ def transcribe(audio_url, auto_chapters=False):
 
 
 def poll(transcript_id, **kwargs):
-    polling_endpoint = transcript_endpoint + '/' + transcript_id
+    polling_endpoint = f'{transcript_endpoint}/{transcript_id}'
     polling_response = requests.get(polling_endpoint, headers=headers_assemblyai)
 
     if polling_response.json()['status'] == 'completed':
-        filename = transcript_id + '.txt'
+        filename = f'{transcript_id}.txt'
         with open(filename, 'w') as f:
             f.write(polling_response.json()['text'])
 
-        filename = transcript_id + '_chapters.json'
+        filename = f'{transcript_id}_chapters.json'
         with open(filename, 'w') as f:
             chapters = polling_response.json()['chapters']
 
